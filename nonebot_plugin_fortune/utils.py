@@ -68,11 +68,14 @@ def drawing(gid: str, uid: str, theme: str, spec_path: Optional[str] = None) -> 
         "text": f"{fortune_config.fortune_path}/font/sakura.ttf",
     }
     ttfront = ImageFont.truetype(fontPath["title"], font_size)
-    font_length = ttfront.getsize(title)
+
+    # 使用 getlength 获取文本的宽度
+    font_width = ttfront.getlength(title)
+
     draw.text(
         (
-            image_font_center[0] - font_length[0] / 2,
-            image_font_center[1] - font_length[1] / 2,
+            image_font_center[0] - font_width / 2,
+            image_font_center[1],
         ),
         title,
         fill=color,
